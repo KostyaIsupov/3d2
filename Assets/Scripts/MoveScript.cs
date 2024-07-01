@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MoveScript : MonoBehaviour
 {
     Rigidbody rigidbody;
+    public Joystick joystick;
     public Text coinsCount;
     public float speed;
     // Start is called before the first frame update
@@ -17,7 +18,9 @@ public class MoveScript : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {
+    { 
+        float horisontal = joystick.Horizontal;
+        float vertical = joystick.Vertical;
         if(Input.GetKey(KeyCode.W))
         {
             rigidbody.AddForce(speed, 0, 0);
@@ -34,6 +37,7 @@ public class MoveScript : MonoBehaviour
         {
             rigidbody.AddForce(0, 0, -speed);
         }
+        rigidbody.velocity = new Vector3(vertical * speed, rigidbody.velocity.y, -horisontal * speed);
     }
     private void OnTriggerEnter(Collider other)
     {
