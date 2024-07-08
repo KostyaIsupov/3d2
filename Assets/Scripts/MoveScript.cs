@@ -9,11 +9,14 @@ public class MoveScript : MonoBehaviour
     Rigidbody rigidbody;
     public Joystick joystick;
     public Text coinsCount;
+    public int allCoins;
     public float speed;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+
+        allCoins = GameObject.FindGameObjectsWithTag("Coin").Length;
     }
 
     // Update is called once per frame
